@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA — Curated Premium Storefront</title>
+    <meta name="description" content="Discover AURA, a premium ecommerce experience featuring handpicked tech, apparel, and lifestyle accessories. Shop the minimalist collection with dynamic filters and a seamless shopping cart.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" id="nav-logo">AURA<span class="logo-dot">.</span></a>
+            
+            <nav class="nav-links">
+                <a href="#" class="nav-link active" data-view="home">Home</a>
+                <a href="#" class="nav-link" data-view="shop">Shop</a>
+                <span class="nav-link-indicator"></span>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn search-toggle" id="search-toggle-btn" aria-label="Toggle Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <div class="search-dropdown" id="search-dropdown">
+                    <input type="text" id="global-search" placeholder="Search products...">
+                </div>
+                <button class="icon-btn theme-toggle" id="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <button class="icon-btn cart-btn" id="cart-toggle-btn" aria-label="Open Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cart-badge-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+        <!-- 1. Home View -->
+        <section id="home-view" class="view-section active">
+            <!-- Hero Banner -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <span class="hero-tag">Summer Collection 2026</span>
+                    <h1 class="hero-title">Refined Living.<br>Minimalist Design.</h1>
+                    <p class="hero-subtitle">Experience a curated catalog of high-end accessories, premium tech, and apparel designed for the modern lifestyle.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" id="hero-cta-btn">Explore Shop <i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="btn btn-secondary" id="hero-secondary-btn">View Categories</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-wrapper">
+                        <img src="assets/hero_banner.png" alt="Aura Luxury Banner" class="hero-image" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=1000';">
+                        <div class="glowing-orb"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Overview Section -->
+            <div class="home-categories-section">
+                <div class="section-header">
+                    <h2 class="section-title">Browse by Category</h2>
+                    <p class="section-subtitle">Find premium items tailored to specific needs</p>
+                </div>
+                <div class="category-grid">
+                    <div class="category-card" data-category="electronics">
+                        <div class="category-icon-wrapper">
+                            <i class="fa-solid fa-laptop"></i>
+                        </div>
+                        <h3>Tech & Gadgets</h3>
+                        <p>Modern productivity boosters</p>
+                        <span class="category-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                    </div>
+                    <div class="category-card" data-category="clothing">
+                        <div class="category-icon-wrapper">
+                            <i class="fa-solid fa-shirt"></i>
+                        </div>
+                        <h3>Premium Apparel</h3>
+                        <p>Minimalist everyday wear</p>
+                        <span class="category-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                    </div>
+                    <div class="category-card" data-category="accessories">
+                        <div class="category-icon-wrapper">
+                            <i class="fa-solid fa-glasses"></i>
+                        </div>
+                        <h3>Lifestyle & Accessories</h3>
+                        <p>Perfect companion pieces</p>
+                        <span class="category-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                    </div>
+                    <div class="category-card" data-category="home">
+                        <div class="category-icon-wrapper">
+                            <i class="fa-solid fa-couch"></i>
+                        </div>
+                        <h3>Home Decor</h3>
+                        <p>Sleek design for interior spaces</p>
+                        <span class="category-arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Products -->
+            <div class="featured-products-section">
+                <div class="section-header">
+                    <h2 class="section-title">Trending Now</h2>
+                    <p class="section-subtitle">Most wanted pieces of this season</p>
+                </div>
+                <div class="product-grid" id="featured-grid">
+                    <!-- Loaded dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Shop View -->
+        <section id="shop-view" class="view-section">
+            <div class="shop-layout">
+                <!-- Sidebar Filters -->
+                <aside class="filter-sidebar" id="filter-sidebar">
+                    <div class="filter-header">
+                        <h3>Filters</h3>
+                        <button class="clear-filters-btn" id="clear-filters-btn">Clear All</button>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Category</h4>
+                        <div class="filter-options category-options">
+                            <label class="filter-radio-label">
+                                <input type="radio" name="shop-category" value="all" checked>
+                                <span class="radio-custom"></span> All Products
+                            </label>
+                            <label class="filter-radio-label">
+                                <input type="radio" name="shop-category" value="electronics">
+                                <span class="radio-custom"></span> Tech & Gadgets
+                            </label>
+                            <label class="filter-radio-label">
+                                <input type="radio" name="shop-category" value="clothing">
+                                <span class="radio-custom"></span> Premium Apparel
+                            </label>
+                            <label class="filter-radio-label">
+                                <input type="radio" name="shop-category" value="accessories">
+                                <span class="radio-custom"></span> Accessories
+                            </label>
+                            <label class="filter-radio-label">
+                                <input type="radio" name="shop-category" value="home">
+                                <span class="radio-custom"></span> Home Decor
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Price Range</h4>
+                        <div class="price-slider-container">
+                            <input type="range" id="price-range" min="0" max="1000" value="1000" class="slider">
+                            <div class="price-labels">
+                                <span>$0</span>
+                                <span id="price-value">$1000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Minimum Rating</h4>
+                        <div class="rating-filter-options">
+                            <label class="filter-radio-label">
+                                <input type="radio" name="rating-filter" value="0" checked>
+                                <span class="radio-custom"></span> All Ratings
+                            </label>
+                            <label class="filter-radio-label">
+                                <input type="radio" name="rating-filter" value="4">
+                                <span class="radio-custom"></span> 4.0 ★ & above
+                            </label>
+                            <label class="filter-radio-label">
+                                <input type="radio" name="rating-filter" value="4.5">
+                                <span class="radio-custom"></span> 4.5 ★ & above
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Catalog Grid -->
+                <div class="shop-catalog">
+                    <div class="catalog-header">
+                        <div class="results-info">
+                            <span id="results-count">Showing 0 products</span>
+                        </div>
+                        <div class="catalog-controls">
+                            <!-- Toggle Sidebar on Mobile -->
+                            <button class="btn btn-secondary filter-toggle-mobile" id="mobile-filter-btn">
+                                <i class="fa-solid fa-sliders"></i> Filters
+                            </button>
+                            <div class="sort-wrapper">
+                                <label for="sort-select" class="sort-label">Sort by:</label>
+                                <select id="sort-select" class="sort-select">
+                                    <option value="featured">Featured</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="rating">Top Rated</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid of products -->
+                    <div class="product-grid" id="catalog-grid">
+                        <!-- Loaded dynamically via JS -->
+                    </div>
+                    <div id="no-results-msg" class="no-results hidden">
+                        <i class="fa-solid fa-face-frown"></i>
+                        <h3>No products found</h3>
+                        <p>Try refining your filters or search terms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shopping Cart Slide-out Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-drawer-header">
+            <h3>Your Bag (<span id="cart-count">0</span>)</h3>
+            <button class="close-btn" id="cart-close-btn" aria-label="Close Cart">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Scrollable items list -->
+        <div class="cart-items-container" id="cart-items-container">
+            <!-- Loaded dynamically via JS -->
+        </div>
+
+        <!-- Cart Summary Footer -->
+        <div class="cart-drawer-footer">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span id="cart-shipping">Free</span>
+            </div>
+            <div class="summary-row total-row">
+                <span>Total</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Product Details Modal Overlay -->
+    <div class="modal-overlay" id="details-modal">
+        <div class="modal-content">
+            <button class="close-btn modal-close" id="modal-close-btn" aria-label="Close Details">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body" id="modal-body">
+                <!-- Loaded dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Center -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo">AURA<span class="logo-dot">.</span></span>
+                <p>Sophisticated minimalist design and functional excellence for everyday life.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Shop</h4>
+                <a href="#" class="footer-link" data-category="electronics">Electronics</a>
+                <a href="#" class="footer-link" data-category="clothing">Apparel</a>
+                <a href="#" class="footer-link" data-category="accessories">Accessories</a>
+                <a href="#" class="footer-link" data-category="home">Home Decor</a>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <a href="#">Contact Us</a>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Join Aura Club</h4>
+                <p>Receive early product drop announcements and design insights.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AURA Inc. All rights reserved. Created for learning purposes.</p>
+        </div>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
